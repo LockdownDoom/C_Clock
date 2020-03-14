@@ -21,21 +21,23 @@ void drawClock(int c_x, int c_y, int radius,WINDOW * win){
 	float scale_hr = ((float)hours)/12.0;
 	attron(COLOR_PAIR(1));
 	//draw the outline
-	for (int a=0;a<360;a++){
-		mvwprintw(win, c_y+sin(a)*radius,c_x+cos(a)*radius*2,"*");
+	for (int a=0;a<3600;a++){
+		mvwprintw(win, c_y+sin(a/10.0)*radius,c_x+cos(a/10.0)*radius*2,"*");
 	}
 	//draw the clock hands
-	for (int r=0;r<radius;r++){
+	for (int r=0;r<radius*10;r++){
 		attron(COLOR_PAIR(2));
-		mvwprintw(win, c_y+sin(RAD*((360.0*scale_sec)-90))*(float)r,c_x+cos(RAD*((360.0*scale_sec)-90))*2.0*(float)r,"*");
+		if (r<=9.8*radius){
+			mvwprintw(win, c_y+sin(RAD*((360.0*scale_sec)-90))*(float)r/10.0,c_x+cos(RAD*((360.0*scale_sec)-90))*2.0*(float)r/10.0,"*");
+		}	
 		attron(COLOR_PAIR(3));
-		if (r<=0.9*radius){
-			mvwprintw(win, c_y+sin(RAD*((360.0*scale_min)-90))*(float)r,c_x+cos(RAD*((360.0*scale_min)-90))*2.0*(float)r,"*");
+		if (r<=9*radius){
+			mvwprintw(win, c_y+sin(RAD*((360.0*scale_min)-90))*(float)r/10.0,c_x+cos(RAD*((360.0*scale_min)-90))*2.0*(float)r/10.0,"*");
 	
 		}
 		attron(COLOR_PAIR(4));
-		if (r<=0.7*radius){
-			mvwprintw(win,c_y+sin(RAD*((360.0*scale_hr)-90))*(float)r,c_x+cos(RAD*((360.0*scale_hr)-90))*2.0*(float)r,"*");
+		if (r<=7*radius){
+			mvwprintw(win,c_y+sin(RAD*((360.0*scale_hr)-90))*(float)r/10.0,c_x+cos(RAD*((360.0*scale_hr)-90))*2.0*(float)r/10.0,"*");
 		}
 	}
 }

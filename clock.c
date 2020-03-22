@@ -27,11 +27,11 @@ void drawClock(int c_x, int c_y, int radius,WINDOW * win){
 	//draw the clock hands
 	for (int r=0;r<radius*10;r++){
 		attron(COLOR_PAIR(2));
-		if (r<=9.8*radius){
+		if (r<=9*radius){
 			mvwprintw(win, c_y+sin(RAD*((360.0*scale_sec)-90))*(float)r/10.0,c_x+cos(RAD*((360.0*scale_sec)-90))*2.0*(float)r/10.0,"*");
 		}	
 		attron(COLOR_PAIR(3));
-		if (r<=9*radius){
+		if (r<=8*radius){
 			mvwprintw(win, c_y+sin(RAD*((360.0*scale_min)-90))*(float)r/10.0,c_x+cos(RAD*((360.0*scale_min)-90))*2.0*(float)r/10.0,"*");
 	
 		}
